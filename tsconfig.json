@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        // "lib": [
+        //     "dom",
+        //     "es7"
+        // ],
+        "target": "es2018",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,              
+        "baseUrl": ".",
+        "paths": {
+                "*": [ "./*" ],
+                "model/*": ["test/model/*"],
+                "test/*": ["./test/*"],
+        },
+        "types": ["@wdio/mocha-framework", "node", "chai", "@wdio/sync"],
+        "experimentalDecorators": true
+    },   
+    "include": [
+        "./**/*.ts",
+        // "./model/**/*.ts"
+    ],
+    "exclude": [
+      "./node_modules"
+    ]
+}
