@@ -1,4 +1,41 @@
 const resultsFolder = 'tests_output';
+const SELENIUM_URL = process.env.SELENIUM_URL;
+const SELENIUM_BROWSER = process.env.SELENIUM_BROWSER.toLowerCase();
+const SELENIUM_WAIT = Number(process.env.SELENIUM_WAIT) * 1000;
+const SELENIUM_GRID_URL = process.env.SELENIUM_GRID_URL;
+const GRID_HOST = SELENIUM_GRID_URL.split('/')[2].split(':')[0];
+const GRID_PORT = Number(SELENIUM_GRID_URL.split('/')[2].split(':')[1]);
+const GRID_PATH = `/${SELENIUM_GRID_URL.split('/')[3]}/${SELENIUM_GRID_URL.split('/')[4]}`;
+
+
+availableCapabilities = [
+    {
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: [
+                '--window-size=1920,1200',
+                '--disable-gpu',
+                '--no-sandbox',
+                '--headless'
+            ]
+        }
+    },
+    {
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: [
+                '-headless'
+            ]
+        }
+    }
+]
+
+if (SELENIUM_BROWSER === 'all' || SELENIUM_BROWSER === '*') {
+    caps = availableCapabilities
+} else {
+    caps = [availableCapabilities.find(c => c.browserName === SELENIUM_BROWSER)]
+}
+
 exports.config = {
     //
     // ====================
@@ -7,7 +44,7 @@ exports.config = {
     //
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
-    //runner: 'local',
+    // runner: 'local',
     //
     // =====================
     // Server Configurations
@@ -19,9 +56,9 @@ exports.config = {
     // according to your user and key information. However, if you are using a private Selenium
     // backend you should define the host address, port, and path here.
     //
-    hostname: 'selenium_hub',
-    port: 4444,
-    path: '/wd/hub',
+    hostname: GRID_HOST,
+    port: GRID_PORT,
+    path: GRID_PATH,
     //
     // ==================
     // Specify Test Files
@@ -60,24 +97,24 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-    
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: [
-                '-headless'
-            ]
-        }
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
-    }],
+    capabilities: caps,
+    // capabilities: [{
+    //     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+    //     // grid with only 5 firefox instances available you can make sure that not more than
+    //     // 5 instances get started at a time.
+    //     maxInstances: 5,
+    //     //
+    //     browserName: 'firefox',
+    //     'moz:firefoxOptions': {
+    //         args: [
+    //             '-headless'
+    //         ]
+    //     }
+    //     // If outputDir is provided WebdriverIO can capture driver session logs
+    //     // it is possible to configure which logTypes to include/exclude.
+    //     // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+    //     // excludeDriverLogs: ['bugreport', 'server'],
+    // }],
     //
     // ===================
     // Test Configurations
@@ -85,6 +122,8 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
+    debug: true,
+    execArgv: ['--inspect=127.0.0.1:9229'],
     logLevel: 'info',
     //
     // Set specific log levels per logger
@@ -109,7 +148,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://jupiter.cloud.planittesting.com',
+    baseUrl: SELENIUM_URL,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -236,7 +275,7 @@ exports.config = {
      */
     beforeTest: function (test, context) {
         browser.url(this.baseUrl);
-        browser.setTimeout({ 'implicit': 1000 })
+        browser.setTimeout({ 'implicit': SELENIUM_WAIT })
     },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling

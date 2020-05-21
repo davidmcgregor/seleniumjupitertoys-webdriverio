@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run All Tests",
+            "runtimeExecutable": "npm",
+            "args": [
+                "test"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "port": 9229,
+            "env": {
+                "SELENIUM_BROWSER": "firefox",
+                "SELENIUM_URL": "http://jupiter.cloud.planittesting.com",
+                "SELENIUM_WAIT": "1"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run Current Test File",
+            "runtimeExecutable": "npm",
+            "args": [
+                "test",
+                "--",
+                "--spec",
+                "${file}"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "port": 9229,
+            "env": {
+                "SELENIUM_BROWSER": "firefox",
+                "SELENIUM_URL": "http://jupiter.cloud.planittesting.com",
+                "SELENIUM_WAIT": "1"
+            }
+        }
+    ]
+}

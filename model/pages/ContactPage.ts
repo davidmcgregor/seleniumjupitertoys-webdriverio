@@ -1,16 +1,16 @@
 import BasePage from "./BasePage";
 
 export default class ContactPage extends BasePage {
-    getForenameError(): string {
+    public getForenameError(): string {
         return $('#forename-err').getText();
     }
-    getEmailError(): string {
+    public getEmailError(): string {
         return $('#email-err').getText();
     }
-    getMessageError(): string {
+    public getMessageError(): string {
         return $('#message-err').getText();
     }
-    clickSubmitButton(): void {
+    public clickSubmitButton(): void {
         $('.btn-primary').click();
     }
 }

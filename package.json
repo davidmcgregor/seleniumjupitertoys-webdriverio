@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio",
-    "lint": "eslint 'tests/**/*.ts' 'model/**/*.ts'",
+    "clean": "rm -rf tests_output",
+    "lint": "eslint '/**/*.ts'",
     "lint-fix": "npm run lint -- --fix"
   },
   "keywords": [],
