@@ -11,6 +11,7 @@ export class ShopTests {
         homePage.clickShopMenu();
         const shopPage: ShopPage = new ShopPage();
         const product: Product = shopPage.getProduct((p) => p.getTitle() === 'Fluffy Bunny');
+        
         expect(product.getPrice()).to.equal(8.99);
     }
 
@@ -20,6 +21,7 @@ export class ShopTests {
         homePage.clickShopMenu();
         const shopPage: ShopPage = new ShopPage();
         const products: Product[] = shopPage.getProducts((p) => p.getPrice() < 8.99);
+        
         expect(products.length).to.equal(0);
     }
 
@@ -30,6 +32,7 @@ export class ShopTests {
         const shopPage: ShopPage = new ShopPage();
         const product: Product = shopPage.getProduct((p) => p.getStars() === 5);
         product.clickBuyButton();
+        
         expect(shopPage.getCartCount()).to.equal(1);
     }
 }
