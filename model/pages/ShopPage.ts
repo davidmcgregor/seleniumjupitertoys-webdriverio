@@ -1,9 +1,16 @@
-import BasePage from "./BasePage";
-import Product from "model/Products/Product";
+import Product from 'model/compoenents/Product';
+import BasePage from './BasePage';
 
 export default class ShopPage extends BasePage {
     public getProduct(comparator: (p: Product) => boolean): Product {
-        return $$('.product').map(element => new Product(element))
-                             .find(product => comparator(product));
+        const product = $$('.product').map((element) => new Product(element))
+            .find((product) => comparator(product));
+        if (product) return product;
+        throw `Product not found using: ${comparator}`;
+    }
+
+    public getProducts(comparator: (p: Product) => boolean): Array<Product> {
+        return $$('.product').map((element) => new Product(element))
+            .filter((product) => comparator(product));
     }
 }

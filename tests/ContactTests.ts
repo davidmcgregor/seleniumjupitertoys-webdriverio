@@ -1,10 +1,9 @@
-import { suite, test } from '@testdeck/mocha'
-import { expect } from 'chai'
-import { HomePage, ContactPage } from 'model/pages';
+import {suite, test} from '@testdeck/mocha';
+import {expect} from 'chai';
+import {HomePage, ContactPage} from 'model/pages';
 
 @suite
 export class ContactTests {
-    
     @test
     'validate mandatory errors'(): void {
         const homePage: HomePage = new HomePage();
@@ -24,9 +23,9 @@ export class ContactTests {
         const contactPage: ContactPage = new ContactPage();
         contactPage.clickSubmitButton();
         contactPage.setForename('Juan')
-                   .setEmail('jflorez@planittesting.com')
-                   .setMessage('Hello');
-        
+            .setEmail('jflorez@planittesting.com')
+            .setMessage('Hello');
+
         expect(contactPage.getForenameError()).to.equal('');
         expect(contactPage.getEmailError()).to.equal('');
         expect(contactPage.getMessageError()).to.equal('');
@@ -38,11 +37,10 @@ export class ContactTests {
         homePage.clickContactMenu();
         const contactPage: ContactPage = new ContactPage();
         contactPage.setForename('Juan')
-                   .setEmail('jflorez@planittesting.com')
-                   .setMessage('Hello');
+            .setEmail('jflorez@planittesting.com')
+            .setMessage('Hello');
         contactPage.clickSubmitButton();
-        
+
         expect(contactPage.getSuccessMessage()).to.equal('Thanks Juan, we appreciate your feedback.');
     }
-
 }

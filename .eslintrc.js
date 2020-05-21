@@ -1,7 +1,9 @@
-/* eslint-disable no-undef */
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: `./tsconfig.json`,
+    },
     plugins: [
       '@typescript-eslint',
     ],
@@ -9,5 +11,14 @@ module.exports = {
       'eslint:recommended',
       'plugin:@typescript-eslint/eslint-recommended',
       'plugin:@typescript-eslint/recommended',
+      'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      'google',
     ],
+    rules: {
+      'eqeqeq':'error',
+      'require-jsdoc':'off',
+      'max-len':'off',
+      'no-throw-literal':'off',
+      'indent':['error',4]
+    }
   };

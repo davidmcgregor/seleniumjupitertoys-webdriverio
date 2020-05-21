@@ -10,14 +10,17 @@
             "name": "Run All Tests",
             "runtimeExecutable": "npm",
             "args": [
-                "test"
+                "test",
+                "--",
+                "-l",
+                "trace",
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
-                "SELENIUM_URL": "http://jupiter.cloud.planittesting.com",
+                "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
                 "SELENIUM_WAIT": "3"
             }
         },
@@ -29,6 +32,8 @@
             "args": [
                 "test",
                 "--",
+                "-l",
+                "trace",
                 "--spec",
                 "${file}"
             ],
@@ -37,7 +42,7 @@
             "port": 9229,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
-                "SELENIUM_URL": "http://jupiter.cloud.planittesting.com",
+                "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
                 "SELENIUM_WAIT": "3"
             }
         }
