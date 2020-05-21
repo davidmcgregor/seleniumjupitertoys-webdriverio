@@ -122,9 +122,9 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
+    logLevel: 'info',
     debug: true,
     execArgv: ['--inspect=127.0.0.1:9229'],
-    logLevel: 'info',
     //
     // Set specific log levels per logger
     // loggers:
@@ -151,7 +151,7 @@ exports.config = {
     baseUrl: SELENIUM_URL,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 60000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -225,7 +225,7 @@ exports.config = {
             fs.mkdirSync(dir);
         } else {
             fs.readdirSync(dir).forEach(file => { 
-                fs.rmdirSync(file,{recursive: true});
+                fs.rmdirSync(`${dir}/${file}`,{recursive: true});
             }); 
         }
     },

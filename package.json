@@ -6,7 +6,7 @@
   "scripts": {
     "test": "wdio",
     "clean": "rm -rf tests_output",
-    "lint": "eslint '/**/*.ts'",
+    "lint": "eslint './**/*.ts'",
     "lint-fix": "npm run lint -- --fix"
   },
   "keywords": [],
