@@ -3,8 +3,8 @@ FROM node
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install -y sudo curl wget git
-    # software-properties-common build-essential iproute2 procps gnupg2 unzip
+    apt-get install -y sudo
+    # curl wget git software-properties-common build-essential iproute2 procps gnupg2 unzip
 
 RUN useradd -ms /bin/bash dev && \
     sudo adduser dev sudo && \

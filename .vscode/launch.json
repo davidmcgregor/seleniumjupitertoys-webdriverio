@@ -7,13 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Run All Tests",
+            "name": "Run Current Test File",
             "runtimeExecutable": "npm",
             "args": [
                 "test",
                 "--",
                 "-l",
                 "trace",
+                "--spec",
+                "${file}"
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
@@ -27,15 +29,13 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Run Current Test File",
+            "name": "Run All Tests",
             "runtimeExecutable": "npm",
             "args": [
                 "test",
                 "--",
                 "-l",
                 "trace",
-                "--spec",
-                "${file}"
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",

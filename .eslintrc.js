@@ -19,6 +19,7 @@ module.exports = {
       'require-jsdoc':'off',
       'max-len':'off',
       'no-throw-literal':'off',
-      'indent':['error',4]
+      'indent':['error',4],
+      'no-trailing-spaces':'off'
     }
   };

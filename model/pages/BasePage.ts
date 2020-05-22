@@ -9,6 +9,10 @@ export default abstract class BasePage {
         $('#nav-shop a').click();
     }
 
+    public clickCartMenu(): void {
+        $('#nav-cart a').click();
+    }
+
     public clickLoginMenu(): LoginDialog {
         $('#nav-login a').click();
         return new LoginDialog($('.popup'));

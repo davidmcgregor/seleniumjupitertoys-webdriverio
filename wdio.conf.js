@@ -7,7 +7,6 @@ const GRID_HOST = SELENIUM_GRID_URL.split('/')[2].split(':')[0];
 const GRID_PORT = Number(SELENIUM_GRID_URL.split('/')[2].split(':')[1]);
 const GRID_PATH = `/${SELENIUM_GRID_URL.split('/')[3]}/${SELENIUM_GRID_URL.split('/')[4]}`;
 
-
 availableCapabilities = [
     {
         browserName: 'chrome',
@@ -293,8 +292,8 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine).
      */
     afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        if (test.error !== undefined) {
-            let name = 'ERROR-' + Date.now();
+        if (error !== undefined) {
+            let name = `ERROR-${test.title}-${Date.now()}`;
             browser.saveScreenshot(`./${resultsFolder}/${name}.png`);
         }
     },
