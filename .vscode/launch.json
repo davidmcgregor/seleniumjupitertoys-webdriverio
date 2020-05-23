@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Run Current Test File",
+            "name": "Debug Current File",
             "runtimeExecutable": "npm",
             "args": [
                 "test",
@@ -20,6 +20,7 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
+            "timeout": 30000,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
@@ -40,6 +41,7 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
+            "autoAttachChildProcesses": false,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",

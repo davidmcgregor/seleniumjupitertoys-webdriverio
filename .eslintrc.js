@@ -20,6 +20,7 @@ module.exports = {
       'max-len':'off',
       'no-throw-literal':'off',
       'indent':['error',4],
-      'no-trailing-spaces':'off'
+      'no-trailing-spaces':'off',
+      'arrow-parens':'off'
     }
   };

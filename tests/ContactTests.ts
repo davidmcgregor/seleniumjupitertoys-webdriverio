@@ -11,7 +11,6 @@ export class ContactTests {
         const contactPage: ContactPage = new ContactPage();
         contactPage.clickSubmitButton();
         
-        contactPage.getForenameError().should.equal('Forename is required');
         expect(contactPage.getForenameError()).to.equal('Forename is required');
         expect(contactPage.getEmailError()).to.equal('Email is required');
         expect(contactPage.getMessageError()).to.equal('Message is required');
