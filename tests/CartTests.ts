@@ -30,10 +30,10 @@ export class CartTests {
         const homePage: HomePage = new HomePage();
         homePage.clickShopMenu();
         const shopPage: ShopPage = new ShopPage();
-        let product: Product = shopPage.getProduct((p) => p.getTitle() === 'Fluffy Bunny');
+        let product: Product = shopPage.getProduct(p => p.getTitle() === 'Fluffy Bunny');
         const bunnyTitle: string = product.getTitle();
         product.clickBuyButton().clickBuyButton();
-        product = shopPage.getProduct((p) => p.getTitle() === 'Stuffed Frog');
+        product = shopPage.getProduct(p => p.getTitle() === 'Stuffed Frog');
         const frogTitle: string = product.getTitle();
         product.clickBuyButton().clickBuyButton();
         shopPage.clickCartMenu();
@@ -50,7 +50,7 @@ export class CartTests {
         homePage.clickShopMenu();
         const shopPage: ShopPage = new ShopPage();
         cartData.forEach(cartItem => {
-            const product: Product = shopPage.getProduct((p) => p.getTitle() === cartItem.title);
+            const product: Product = shopPage.getProduct(p => p.getTitle() === cartItem.title);
             [...Array(cartItem.count).keys()].forEach(() => product.clickBuyButton());
         });
         shopPage.clickCartMenu();
@@ -75,7 +75,7 @@ cartDataArray.forEach((cartData: any) => {
             homePage.clickShopMenu();
             const shopPage = new ShopPage();
             cartData.forEach(cartItem => {
-                const product = shopPage.getProduct((p) => p.getTitle() === cartItem.title);
+                const product = shopPage.getProduct(p => p.getTitle() === cartItem.title);
                 [...Array(cartItem.count).keys()].forEach(() => product.clickBuyButton());
             });
             shopPage.clickCartMenu();
