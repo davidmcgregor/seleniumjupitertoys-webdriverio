@@ -5,7 +5,7 @@
 import {suite, test, params} from '@testdeck/mocha';
 import {expect} from 'chai';
 import {CartPage, HomePage, ShopPage} from 'model/pages';
-import {Product} from 'model/compoenents';
+import {Product} from 'model/components';
 import {CartDataProvider} from './data/dataProvides';
 
 @suite
