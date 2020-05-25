@@ -64,6 +64,9 @@ export class CartTests {
     }
 }
 
+/**
+ * This is an example on how to run a test multiple times from a data source
+ */
 const cartDataArray: any = new CartDataProvider().withDataFile('multiple_cart_data.json').getData();
 cartDataArray.forEach((cartData: any) => {
     @suite
