@@ -29,7 +29,7 @@ export class LoginTests {
         const logoutDialog: LogoutDialog = homePage.clickLogoutMenu();
         logoutDialog.clickLogoutButton();
 
-        homePage.getUser().should.equal('juan');
+        homePage.getUser().should.equal('');
         // expect(homePage.getUser()).to.equal('');
     }
 }

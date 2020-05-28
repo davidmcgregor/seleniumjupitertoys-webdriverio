@@ -20,7 +20,7 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
-            "timeout": 30000,
+            "timeout": 60000,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
@@ -41,7 +41,7 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
-            "autoAttachChildProcesses": false,
+            "timeout": 60000,
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
