@@ -16,6 +16,8 @@ services:
       HUB_HOST: selenium_hub
       NODE_MAX_INSTANCES: '3'
       NODE_MAX_SESSION: '3'
+    depends_on:
+      - selenium_hub
 
   chrome:
     image: selenium/node-chrome
@@ -25,9 +27,8 @@ services:
       HUB_HOST: selenium_hub
       NODE_MAX_INSTANCES: '3'
       NODE_MAX_SESSION: '3'
+    depends_on:
+      - selenium_hub
 
   selenium_hub:
     image: selenium/hub
-    depends_on:
-      - firefox
-      - chrome
