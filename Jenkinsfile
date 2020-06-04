@@ -36,7 +36,7 @@ node {
 			def run_id = UUID.randomUUID().toString()
 			unstash 'junit-results'
 			unstash 'test-metadata'
-			sh 'ls -lha .'
+			updateYaml()
 			def files = findFiles(glob: 'tests_output/*.xml')
 			for(file in files) {
 				echo file.path
@@ -46,4 +46,19 @@ node {
 			}                                       
 		}
 	}
+}
+
+def updateYaml() {
+	def browser_version = ""
+	def capabilities = sh(script: 'curl -s http://selenium_hub:4444/grid/console | grep -ioE  "title=\'{(.*)}\'" | sort --unique | grep -Po "(?<=browserName=)(.*?)(?=,)|(?<=version=)(.*?)(?=,)"', returnStdout: true).split('\n')
+	def version = "";
+	for (int i=0; i<capabilities.length; i+=2) {
+		if(capabilities[i].equalsIgnoreCase(params.SELENIUM_BROWSER)) {
+			version = capabilities[i+1];
+		}
+	}
+	def test_metadata = readYaml file: 'test-metadata.yaml'
+	test_metadata.test.put('browser',params.SELENIUM_BROWSER)
+	test_metadata.test.put('browserVersion',version)
+	writeYaml file: 'test-metadata.yaml', data: test_metadata, overwrite: true
 }
