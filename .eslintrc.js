@@ -21,6 +21,7 @@ module.exports = {
       'no-throw-literal':'off',
       'indent':['error',4],
       'no-trailing-spaces':'off',
-      'arrow-parens':'off'
+      'arrow-parens':'off',
+      '@typescript-eslint/no-non-null-assertion': 'off'
     }
   };
