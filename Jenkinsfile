@@ -2,7 +2,7 @@ node {
 	properties([
 	  parameters([
 		string(name: 'SELENIUM_URL', defaultValue: 'https://jupiter2.cloud.planittesting.com'),
-		string(name: 'SELENIUM_BROWSER', defaultValue: 'firefox'),
+		string(name: 'SELENIUM_BROWSER', defaultValue: 'all'),
 		string(name: 'SELENIUM_WAIT', defaultValue: '3'),
 		string(name: 'SELENIUM_GRID_URL', defaultValue: 'http://selenium_hub:4444/wd/hub'),
 		string(name: 'SELENIUM_HEADLESS', defaultValue: 'true'),
