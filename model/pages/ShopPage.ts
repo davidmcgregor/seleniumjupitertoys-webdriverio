@@ -3,8 +3,7 @@ import BasePage from './BasePage';
 
 export default class ShopPage extends BasePage {
     public getProduct(comparator: (p: Product) => boolean): Product {
-        const product = $$('.product').map((element) => new Product(element))
-            .find((product) => comparator(product));
+        const product = this.getProducts(comparator)[0];
         if (product) return product;
         throw `Product not found using: ${comparator}`;
     }
