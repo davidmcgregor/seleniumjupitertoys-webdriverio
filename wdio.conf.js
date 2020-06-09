@@ -15,7 +15,12 @@ availableCapabilities = [
                 '--window-size=1920,1200',
                 '--disable-gpu',
                 '--no-sandbox',
-                '--headless'
+                '--headless',
+                '--disable-impl-side-painting',
+                '--disable-gpu-sandbox',
+                '--disable-accelerated-2d-canvas',
+                '--disable-accelerated-jpeg-decoding',
+                '--test-type=ui',
             ]
         }
     },
