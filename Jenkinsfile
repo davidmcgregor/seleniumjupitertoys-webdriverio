@@ -42,7 +42,9 @@ node {
 				echo file.path
 				def xml_string = readFile(file.path).replace("'","")
 				def yaml_string = readFile('test-metadata.yaml')
-				sh "curl --location --request POST '${params.DOT_ENDPOINT}/${run_id}' -H 'Content-Type: application/x-www-form-urlencoded' -H 'x-api-key: ${params.DOT_API_KEY}' --form-string 'data=${xml_string}' --form-string 'metadata=${yaml_string}'"
+				if(xml_string.length()>0) {
+					sh "curl --location --request POST '${params.DOT_ENDPOINT}/${run_id}' -H 'Content-Type: application/x-www-form-urlencoded' -H 'x-api-key: ${params.DOT_API_KEY}' --form-string 'data=${xml_string}' --form-string 'metadata=${yaml_string}'"
+				}
 			}                                       
 		}
 	}
