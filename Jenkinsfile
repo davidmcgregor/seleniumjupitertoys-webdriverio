@@ -25,7 +25,9 @@ node {
 						sh "npm test -- -l debug"
 					} finally {
 						junit 'tests_output/*.xml'
-						archiveArtifacts artifacts: 'tests_output/**/*.png', fingerprint: true
+						try {
+							archiveArtifacts artifacts: 'tests_output/**/*.png', fingerprint: true
+						}
 						stash includes: 'tests_output/*.xml', name: 'junit-results'
 						stash includes: 'test-metadata.yaml', name: 'test-metadata'
 					}
