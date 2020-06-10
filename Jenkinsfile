@@ -22,7 +22,7 @@ node {
 			stage ('Run tests') {
 				withEnv(["SELENIUM_HEADLESS=${params.SELENIUM_HEADLESS}", "SELENIUM_GRID_URL=${params.SELENIUM_GRID_URL}", "SELENIUM_URL=${params.SELENIUM_URL}", "SELENIUM_BROWSER=${params.SELENIUM_BROWSER}", "SELENIUM_WAIT=${params.SELENIUM_WAIT}"]) {
 					try {
-						sh "npm test -- -l debug"
+						sh "npm test"
 					} finally {
 						junit 'tests_output/*.xml'
 						try {
