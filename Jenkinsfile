@@ -25,12 +25,12 @@ node {
 						sh "npm test"
 					} finally {
 						junit 'tests_output/*.xml'
-						try {
+						if (findFiles(glob: 'tests_output/**/*.png').size()>0) {
 							archiveArtifacts artifacts: 'tests_output/**/*.png', fingerprint: true
-						} finally {
-							stash includes: 'tests_output/*.xml', name: 'junit-results'
-							stash includes: 'test-metadata.yaml', name: 'test-metadata'
 						}
+						stash includes: 'tests_output/*.xml', name: 'junit-results'
+						stash includes: 'test-metadata.yaml', name: 'test-metadata'
+						
 					}
 				}
 			}
