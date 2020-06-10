@@ -27,9 +27,10 @@ node {
 						junit 'tests_output/*.xml'
 						try {
 							archiveArtifacts artifacts: 'tests_output/**/*.png', fingerprint: true
+						} finally {
+							stash includes: 'tests_output/*.xml', name: 'junit-results'
+							stash includes: 'test-metadata.yaml', name: 'test-metadata'
 						}
-						stash includes: 'tests_output/*.xml', name: 'junit-results'
-						stash includes: 'test-metadata.yaml', name: 'test-metadata'
 					}
 				}
 			}
