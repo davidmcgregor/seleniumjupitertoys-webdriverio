@@ -10,6 +10,7 @@ services:
     
   firefox:
     image: selenium/node-firefox
+    shm_size: 2gb
     volumes:
       - /dev/shm:/dev/shm
     environment:
@@ -21,6 +22,7 @@ services:
 
   chrome:
     image: selenium/node-chrome
+    shm_size: 2gb
     volumes:
       - /dev/shm:/dev/shm
     environment:
