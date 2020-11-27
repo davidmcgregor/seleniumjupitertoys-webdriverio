@@ -229,7 +229,7 @@ exports.config = {
             fs.mkdirSync(dir);
         } else {
             fs.readdirSync(dir).forEach(file => { 
-                fs.rmdirSync(`${dir}/${file}`,{recursive: true});
+                fs.rmdirSync(`${dir}/${file}`,{recursive: true, force: true});
             }); 
         }
     },
