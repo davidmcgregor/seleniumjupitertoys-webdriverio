@@ -1,8 +1,8 @@
-import { suite, test } from '@testdeck/mocha';
-import { HomePage, ShopPage } from 'model/pages';
-import { expect } from 'chai';
-import { Product } from 'model/components';
-import { open } from 'model/pages'
+import {suite, test} from '@testdeck/mocha';
+import {HomePage, ShopPage} from 'model/pages';
+import {expect} from 'chai';
+import {Product} from 'model/components';
+import {open} from 'model/pages';
 
 @suite
 export class ShopTests {

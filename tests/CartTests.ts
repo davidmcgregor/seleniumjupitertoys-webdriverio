@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import { suite, test, params } from '@testdeck/mocha';
-import { expect } from 'chai';
-import { CartPage, HomePage, ShopPage } from 'model/pages';
-import { Product } from 'model/components';
-import { CartDataProvider } from './data/dataProvides';
-import { open } from 'model/pages'
+import {suite, test, params} from '@testdeck/mocha';
+import {expect} from 'chai';
+import {CartPage, HomePage, ShopPage} from 'model/pages';
+import {Product} from 'model/components';
+import {CartDataProvider} from './data/dataProvides';
+import {open} from 'model/pages';
 
 @suite
 export class CartTests {

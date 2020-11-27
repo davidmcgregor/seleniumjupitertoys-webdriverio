@@ -1,13 +1,12 @@
 import {suite, test} from '@testdeck/mocha';
 import {expect} from 'chai';
 import {HomePage, ContactPage} from 'model/pages';
-import {open} from 'model/pages'
+import {open} from 'model/pages';
 
 @suite
 export class ContactTests {
     @test
     'validate mandatory errors'(): void {
-        
         const contactPage: ContactPage = open(HomePage).clickContactMenu().clickSubmitButton();
         
         expect(contactPage.getForenameError()).to.equal('Forename is required');

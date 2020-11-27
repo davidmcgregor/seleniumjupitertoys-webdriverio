@@ -1,8 +1,8 @@
-import { suite, test } from '@testdeck/mocha';
+import {suite, test} from '@testdeck/mocha';
 // import {expect} from 'chai';
-import { HomePage } from 'model/pages';
-import { LoginDialog, LogoutDialog } from 'model/dialogs';
-import { open } from 'model/pages'
+import {HomePage} from 'model/pages';
+import {LoginDialog, LogoutDialog} from 'model/dialogs';
+import {open} from 'model/pages';
 import 'chai/register-should';
 
 @suite

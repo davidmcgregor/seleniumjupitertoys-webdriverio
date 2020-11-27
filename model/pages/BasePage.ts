@@ -1,5 +1,5 @@
 import {LoginDialog, LogoutDialog} from 'model/dialogs';
-import { ContactPage, ShopPage, CartPage } from '.';
+import {ContactPage, ShopPage, CartPage} from '.';
 
 export default abstract class BasePage {
     public clickContactMenu(): ContactPage {

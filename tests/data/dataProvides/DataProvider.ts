@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
 import * as fs from 'fs';
 import * as path from 'path';
 

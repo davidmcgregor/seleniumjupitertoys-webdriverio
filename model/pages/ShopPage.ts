@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+
 import {Product} from 'model/components';
 import BasePage from './BasePage';
 
