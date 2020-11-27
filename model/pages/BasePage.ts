@@ -1,16 +1,20 @@
 import {LoginDialog, LogoutDialog} from 'model/dialogs';
+import { ContactPage, ShopPage, CartPage } from '.';
 
 export default abstract class BasePage {
-    public clickContactMenu(): void {
+    public clickContactMenu(): ContactPage {
         $('#nav-contact a').click();
+        return new ContactPage();
     }
 
-    public clickShopMenu(): void {
+    public clickShopMenu(): ShopPage {
         $('#nav-shop a').click();
+        return new ShopPage();
     }
 
-    public clickCartMenu(): void {
+    public clickCartMenu(): CartPage {
         $('#nav-cart a').click();
+        return new CartPage();
     }
 
     public clickLoginMenu(): LoginDialog {

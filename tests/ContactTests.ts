@@ -1,15 +1,14 @@
 import {suite, test} from '@testdeck/mocha';
 import {expect} from 'chai';
 import {HomePage, ContactPage} from 'model/pages';
+import {open} from 'model/pages'
 
 @suite
 export class ContactTests {
     @test
     'validate mandatory errors'(): void {
-        const homePage: HomePage = new HomePage();
-        homePage.clickContactMenu();
-        const contactPage: ContactPage = new ContactPage();
-        contactPage.clickSubmitButton();
+        
+        const contactPage: ContactPage = open(HomePage).clickContactMenu().clickSubmitButton();
         
         expect(contactPage.getForenameError()).to.equal('Forename is required');
         expect(contactPage.getEmailError()).to.equal('Email is required');
@@ -20,9 +19,10 @@ export class ContactTests {
     'validate mandatory errors fixed'(): void {
         const homePage: HomePage = new HomePage();
         homePage.clickContactMenu();
-        const contactPage: ContactPage = new ContactPage();
-        contactPage.clickSubmitButton();
-        contactPage.setForename('Juan')
+        const contactPage: ContactPage = open(HomePage)
+            .clickContactMenu()
+            .clickSubmitButton()
+            .setForename('Juan')
             .setEmail('jflorez@planittesting.com')
             .setMessage('Hello');
 
@@ -33,13 +33,12 @@ export class ContactTests {
 
     @test
     'validate successful submission'(): void {
-        const homePage: HomePage = new HomePage();
-        homePage.clickContactMenu();
-        const contactPage: ContactPage = new ContactPage();
-        contactPage.setForename('Juan')
+        const contactPage: ContactPage = open(HomePage)
+            .clickContactMenu()
+            .setForename('Juan')
             .setEmail('jflorez@planittesting.com')
-            .setMessage('Hello');
-        contactPage.clickSubmitButton();
+            .setMessage('Hello')
+            .clickSubmitButton();
 
         expect(contactPage.getSuccessMessage()).to.equal('Thanks Juan, we appreciate your feedback.');
     }

@@ -35,8 +35,9 @@ export default class ContactPage extends BasePage {
         return this.getErrorText('#message-err');
     }
 
-    public clickSubmitButton(): void {
+    public clickSubmitButton(): ContactPage {
         $('.btn-primary').click();
+        return this;
     }
 
     private getErrorText(locator: string): string {
