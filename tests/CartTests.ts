@@ -1,10 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import {suite, test, params} from '@testdeck/mocha';
 import {expect} from 'chai';
@@ -12,6 +7,7 @@ import {CartPage, HomePage, ShopPage} from 'model/pages';
 import {Product} from 'model/components';
 import {CartDataProvider} from './data/dataProvides';
 import {open} from 'model/pages';
+import {CartData} from 'model/data';
 
 @suite
 export class CartTests {
@@ -47,9 +43,9 @@ export class CartTests {
         expect(cartPage.getSubtotal(bunnyTitle) + cartPage.getSubtotal(frogTitle)).to.equal(cartPage.getTotal());
     }
 
-    @params(new CartDataProvider().getData())
-    @params.naming((cartData) => `validate ${cartData.flatMap(entry => `"${entry.title} X ${entry.count}"`)} in cart`)
-    'validate multiple items cart'(cartData): void {
+    @params(new CartDataProvider<CartData[]>('cart_data.json').getData())
+    @params.naming((cartData: CartData[]) => `validate ${cartData.flatMap(entry => `${entry.title} X ${entry.count}`).join()} in cart`)
+    'validate multiple items cart'(cartData: CartData[]): void {
         const shopPage: ShopPage = open(HomePage).clickShopMenu();
         cartData.forEach(cartItem => {
             const product: Product = shopPage.getProduct(p => p.getTitle() === cartItem.title);
@@ -68,13 +64,13 @@ export class CartTests {
 /**
  * This is an example on how to run a test multiple times from a data source
  */
-const cartDataArray: any = new CartDataProvider().withDataFile('multiple_cart_data.json').getData();
-cartDataArray.forEach((cartData: any) => {
+const cartDataArray: CartData[][] = new CartDataProvider<CartData[][]>('multiple_cart_data.json').getData();
+cartDataArray.forEach((cartData: CartData[]) => {
     @suite
     class DataDrivenCartTests {
         @params(cartData)
-        @params.naming((cartData) => `validate ${cartData.flatMap(entry => `"${entry.title} X ${entry.count}"`)} in cart`)
-        'validate multiple items cart'(cartData: any[]): void {
+        @params.naming((cartData: CartData[]) => `validate ${cartData.flatMap(entry => `${entry.title} X ${entry.count}`).join()} in cart`)
+        'validate multiple items cart with multiple tests'(cartData: CartData[]): void {
             const shopPage: ShopPage = open(HomePage).clickShopMenu();
             cartData.forEach(cartItem => {
                 const product: Product = shopPage.getProduct(p => p.getTitle() === cartItem.title);

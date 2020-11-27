@@ -1,8 +1,8 @@
 import DataProvider from './DataProvider';
 
-export default class CartDataProvider extends DataProvider<unknown> {
-    constructor() {
+export default class CartDataProvider<T> extends DataProvider<T> {
+    constructor(dataFile: string) {
         super();
-        this.dataFile = 'cart_data.json';
+        this.dataFile = dataFile;
     }
 }

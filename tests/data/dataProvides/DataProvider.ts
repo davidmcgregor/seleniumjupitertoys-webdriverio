@@ -7,7 +7,7 @@ export default abstract class DataProvider<T> {
     protected dataFile: string;
 
     public getData(): T {
-        const filePath = path.join(__dirname, `../${this.dataFile}`);
+        const filePath = path.join(__dirname, `../../../resources/${this.dataFile}`);
         const value = fs.readFileSync(filePath).toString();
         return JSON.parse(value);
     }
