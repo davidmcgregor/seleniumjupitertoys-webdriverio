@@ -1,5 +1,5 @@
 import BasePage from './BasePage';
-import {Table} from 'model/components/ui';
+import {Table} from '../components/ui';
 
 export default class CartPage extends BasePage {
     private table: Table;

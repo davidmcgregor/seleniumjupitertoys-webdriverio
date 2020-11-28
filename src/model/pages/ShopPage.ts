@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 
-import {Product} from 'model/components';
+
+import {Product} from '../components';
 import BasePage from './BasePage';
 
 export default class ShopPage extends BasePage {

@@ -1,4 +1,4 @@
-import {LoginDialog, LogoutDialog} from 'model/dialogs';
+import {LoginDialog, LogoutDialog} from '../dialogs';
 import {ContactPage, ShopPage, CartPage} from '.';
 
 export default abstract class BasePage {

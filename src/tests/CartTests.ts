@@ -2,11 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import {suite, test, params} from '@testdeck/mocha';
-import {CartPage, HomePage, ShopPage} from 'model/pages';
-import {Product} from 'model/components';
+import {CartPage, HomePage, ShopPage} from '../model/pages';
+import {Product} from '../model/components';
 import {CartDataProvider, MultipleCartDataProvider} from './dataProviders';
-import {open} from 'model/pages';
-import {CartData} from 'model/data';
+import {open} from '../model/pages';
+import {CartData} from '../model/data';
 import 'chai/register-should';
 
 @suite

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
-import {CartData} from 'model/data';
+import {CartData} from '../../model/data';
 import DataProvider from './DataProvider';
 
 export default class CartDataProvider extends DataProvider<Array<CartData>> {

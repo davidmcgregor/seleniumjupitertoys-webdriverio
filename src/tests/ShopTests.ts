@@ -1,8 +1,7 @@
 import {suite, test} from '@testdeck/mocha';
-import {HomePage, ShopPage} from 'model/pages';
+import {HomePage, ShopPage, open} from '../model/pages';
 import {expect} from 'chai';
-import {Product} from 'model/components';
-import {open} from 'model/pages';
+import {Product} from '../model/components';
 
 @suite
 export class ShopTests {
