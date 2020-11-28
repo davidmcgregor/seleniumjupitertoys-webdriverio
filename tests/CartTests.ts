@@ -15,7 +15,7 @@ export class CartTests {
     'validate price in cart page'(): void {
         const product: Product = open(HomePage)
             .clickShopMenu()
-            .getProduct((p) => p.getTitle() === 'Fluffy Bunny').clickBuyButton();
+            .getProduct(p => p.getTitle() === 'Fluffy Bunny').clickBuyButton();
         const price: number = product.getPrice();
         const title: string = product.getTitle();
         const cartPage: CartPage = open(ShopPage).clickCartMenu();

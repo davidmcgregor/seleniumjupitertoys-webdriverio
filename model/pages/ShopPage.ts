@@ -12,6 +12,6 @@ export default class ShopPage extends BasePage {
 
     public getProducts(comparator: (p: Product) => boolean): Array<Product> {
         return $$('.product').map((element) => new Product(element))
-            .filter((product) => comparator(product));
+            .filter(product => comparator(product));
     }
 }
