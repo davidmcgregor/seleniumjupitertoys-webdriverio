@@ -225,15 +225,8 @@ exports.config = {
      */
     onPrepare: function (config, capabilities) {
         var fs = require('fs');
-        var dir = resultsFolder;
-
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir);
-        } else {
-            fs.readdirSync(dir).forEach(file => { 
-                fs.rmdirSync(`${dir}/${file}`,{recursive: true, force: true});
-            }); 
-        }
+        fs.rmdirSync(resultsFolder, {recursive: true, force: true});
+        fs.mkdirSync(resultsFolder);
     },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
