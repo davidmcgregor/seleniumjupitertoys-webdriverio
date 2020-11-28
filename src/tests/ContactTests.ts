@@ -1,6 +1,6 @@
 import {params, suite, test} from '@testdeck/mocha';
 import {expect} from 'chai';
-import { ContactData } from 'src/model/data';
+import {ContactData} from 'src/model/data';
 import {HomePage, ContactPage, open} from '../model/pages';
 import ContactDataProvider from './dataProviders/ContactDataProvider';
 
@@ -40,7 +40,6 @@ export class ContactTests {
 
         expect(contactPage.getSuccessMessage()).to.equal('Thanks Juan, we appreciate your feedback.');
     }
-
 }
 
 const provider: ContactData[] = new ContactDataProvider('contact_data.json').getData();
