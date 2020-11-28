@@ -42,8 +42,7 @@ export class ContactTests {
     }
 }
 
-const provider: ContactData[] = new ContactDataProvider('contact_data.json').getData();
-provider.forEach(contactData => {
+new ContactDataProvider('contact_data.json').getData().forEach(contactData => {
     /* eslint-disable no-unused-vars */
     /* eslint-disable @typescript-eslint/no-unused-vars */
     @suite
