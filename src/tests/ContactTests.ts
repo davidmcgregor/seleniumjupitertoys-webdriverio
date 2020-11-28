@@ -1,6 +1,8 @@
-import {suite, test} from '@testdeck/mocha';
+import {params, suite, test} from '@testdeck/mocha';
 import {expect} from 'chai';
+import { ContactData } from 'src/model/data';
 import {HomePage, ContactPage, open} from '../model/pages';
+import ContactDataProvider from './dataProviders/ContactDataProvider';
 
 @suite
 export class ContactTests {
@@ -38,4 +40,24 @@ export class ContactTests {
 
         expect(contactPage.getSuccessMessage()).to.equal('Thanks Juan, we appreciate your feedback.');
     }
+
 }
+
+const provider: ContactData[] = new ContactDataProvider('contact_data.json').getData();
+provider.forEach(contactData => {
+    @suite
+    class DataDrivenTests {
+        @params(contactData)
+        @params.naming((contactData: ContactData) => `Validating submission for ${contactData.forename}, ${contactData.email}, ${contactData.message}`)
+        'validate successful submission data driven'(contactData: ContactData): void {
+            const contactPage: ContactPage = open(HomePage)
+                .clickContactMenu()
+                .setForename(contactData.forename)
+                .setEmail(contactData.email)
+                .setMessage(contactData.message)
+                .clickSubmitButton();
+        
+            expect(contactPage.getSuccessMessage()).to.equal(`Thanks ${contactData.forename}, we appreciate your feedback.`);
+        }
+    }
+});
