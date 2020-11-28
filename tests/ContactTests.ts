@@ -16,9 +16,7 @@ export class ContactTests {
 
     @test
     'validate mandatory errors fixed'(): void {
-        const homePage: HomePage = new HomePage();
-        homePage.clickContactMenu();
-        const contactPage: ContactPage = open(HomePage)
+        const contactPage: ContactPage = open(HomePage).clickContactMenu()
             .clickContactMenu()
             .clickSubmitButton()
             .setForename('Juan')

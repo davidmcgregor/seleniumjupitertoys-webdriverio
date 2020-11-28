@@ -3,6 +3,8 @@ const SELENIUM_URL = process.env.SELENIUM_URL;
 const SELENIUM_BROWSER = process.env.SELENIUM_BROWSER.toLowerCase();
 const SELENIUM_WAIT = Number(process.env.SELENIUM_WAIT) * 1000;
 const SELENIUM_GRID_URL = process.env.SELENIUM_GRID_URL;
+const WDIO_DEBUG = process.env.WDIO_DEBUG==='true';
+const WDIO_EXECARGV = WDIO_DEBUG ? ['--inspect=127.0.0.1:9229'] : [];
 const GRID_HOST = SELENIUM_GRID_URL.split('/')[2].split(':')[0];
 const GRID_PORT = Number(SELENIUM_GRID_URL.split('/')[2].split(':')[1]);
 const GRID_PATH = `/${SELENIUM_GRID_URL.split('/')[3]}/${SELENIUM_GRID_URL.split('/')[4]}`;
@@ -77,7 +79,7 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        './tests/data/**'
+        './tests/dataProviders/**'
     ],
     //
     // ============
@@ -127,8 +129,8 @@ exports.config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'warn',
-    debug: true,
-    execArgv: ['--inspect=127.0.0.1:9229'],
+    debug: WDIO_DEBUG,
+    execArgv: WDIO_EXECARGV,
     //
     // Set specific log levels per logger
     // loggers:

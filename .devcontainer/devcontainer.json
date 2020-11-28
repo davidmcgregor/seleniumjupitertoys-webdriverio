@@ -46,6 +46,7 @@
 	"remoteUser": "dev",
 	"remoteEnv": {
 		"SELENIUM_GRID_URL": "http://selenium_hub:4444/wd/hub",
-		"SELENIUM_HEADLESS": "true"
+		"SELENIUM_HEADLESS": "true",
+		"WDIO_DEBUG": "false"
 	}
 }
