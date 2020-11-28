@@ -44,6 +44,8 @@ export class ContactTests {
 
 const provider: ContactData[] = new ContactDataProvider('contact_data.json').getData();
 provider.forEach(contactData => {
+    /* eslint-disable no-unused-vars */
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     @suite
     class DataDrivenTests {
         @params(contactData)

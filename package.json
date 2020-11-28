@@ -7,7 +7,7 @@
     "test": "wdio",
     "clean": "rm -rf tests_output",
     "lint": "eslint './src/**/*.ts'",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "yarn lint --fix"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +25,6 @@
     "@wdio/spec-reporter": "^6.8.1",
     "@wdio/sync": "^6.10.0",
     "chai": "^4.2.0",
-    "class-transformer": "^0.3.1",
     "eslint": "^7.14.0",
     "eslint-config-google": "^0.14.0",
     "ts-node": "^9.0.0",

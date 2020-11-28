@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
 import {ContactData} from 'src/model/data';
 import DataProvider from './DataProvider';
 
