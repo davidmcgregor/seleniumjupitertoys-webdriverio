@@ -38,49 +38,4 @@ export class CartTests {
         (cartPage.getPrice(bunnyTitle) * cartPage.getQuantity(bunnyTitle)).should.equal(cartPage.getSubtotal(bunnyTitle));
         (cartPage.getSubtotal(bunnyTitle) + cartPage.getSubtotal(frogTitle)).should.equal(cartPage.getTotal());
     }
-
-    @params(new CartDataProvider('cart_data.json').getData())
-    @params.naming((cartData: CartData[]) => `validate ${cartData.flatMap(entry => `${entry.title} X ${entry.count}`).join()} in cart`)
-    'validate multiple items cart'(cartData: CartData[]): void {
-        const shopPage: ShopPage = open(HomePage).clickShopMenu();
-        cartData.forEach(cartItem => {
-            const product: Product = shopPage.getProduct(p => p.getTitle() === cartItem.title);
-            [...Array(cartItem.count).keys()].forEach(() => product.clickBuyButton());
-        });
-
-        const cartPage: CartPage = shopPage.clickCartMenu();
-        let total = 0;
-        cartData.forEach(cartItem => {
-            (cartPage.getPrice(cartItem.title) * cartPage.getQuantity(cartItem.title)).should.equal(cartPage.getSubtotal(cartItem.title));
-            total += cartPage.getSubtotal(cartItem.title);
-        });
-        cartPage.getTotal().should.equal(total);
-    }
 }
-
-/**
- * This is an example on how to run a test multiple times from a data source
- */
-const cartDataArray: CartData[][] = new MultipleCartDataProvider('multiple_cart_data.json').getData();
-cartDataArray.forEach((cartData: CartData[]) => {
-    @suite
-    class DataDrivenCartTests {
-        @params(cartData)
-        @params.naming((cartData: CartData[]) => `validate ${cartData.flatMap(entry => `${entry.title} X ${entry.count}`).join()} in cart`)
-        'validate multiple items cart with multiple tests'(cartData: CartData[]): void {
-            const shopPage: ShopPage = open(HomePage).clickShopMenu();
-            cartData.forEach(cartItem => {
-                const product: Product = shopPage.getProduct(p => p.getTitle() === cartItem.title);
-                [...Array(cartItem.count).keys()].forEach(() => product.clickBuyButton());
-            });
-            
-            const cartPage: CartPage = shopPage.clickCartMenu();
-            let total = 0;
-            cartData.forEach(cartItem => {
-                (cartPage.getPrice(cartItem.title) * cartPage.getQuantity(cartItem.title)).should.equal(cartPage.getSubtotal(cartItem.title));
-                total += cartPage.getSubtotal(cartItem.title);
-            });
-            cartPage.getTotal().should.equal(total);
-        }
-    }
-});
