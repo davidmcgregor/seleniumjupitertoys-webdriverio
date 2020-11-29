@@ -2,7 +2,7 @@ import {params, suite, test} from '@testdeck/mocha';
 import {expect} from 'chai';
 import {ContactData} from 'src/model/data';
 import {HomePage, ContactPage, open} from '../model/pages';
-import ContactDataProvider from './dataProviders/ContactDataProvider';
+import {ContactDataProvider} from './dataProviders';
 
 @suite
 export class ContactTests {
