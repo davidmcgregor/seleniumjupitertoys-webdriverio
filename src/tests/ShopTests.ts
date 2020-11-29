@@ -7,25 +7,27 @@ import {Product} from '../model/components';
 export class ShopTests {
     @test
     'validate product price'(): void {
-        const shopPage: ShopPage = open(HomePage).clickShopMenu();
-        const product: Product = shopPage.getProduct(p => p.getTitle() === 'Fluffy Bunny');
-
-        expect(product.getPrice()).to.equal(8.99);
+        expect(
+            open(HomePage)
+                .clickShopMenu()
+                .getProduct(p => p.getTitle() === 'Fluffy Bunny')
+                .getPrice()
+        ).to.equal(8.99);
     }
 
     @test
     'validate products above minumum'(): void {
-        const shopPage: ShopPage = open(HomePage).clickShopMenu();
-        const products: Product[] = shopPage.getProducts(p => p.getPrice() < 8.99);
-
-        expect(products.length).to.equal(0);
+        expect(
+            open(HomePage).clickShopMenu()
+                .getProducts(p => p.getPrice() < 8.99)
+                .length
+        ).to.equal(0);
     }
 
     @test
     'buy product with number of stars'(): void {
         const shopPage: ShopPage = open(HomePage).clickShopMenu();
-        const product: Product = shopPage.getProduct(p => p.getStars() === 5);
-        product.clickBuyButton();
+        shopPage.getProduct(p => p.getStars() === 5).clickBuyButton();
 
         expect(shopPage.getCartCount()).to.equal(1);
     }
