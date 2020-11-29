@@ -1,4 +1,4 @@
-export default class CartData {
+export default interface CartData {
     title: string;
     count: number;
 }

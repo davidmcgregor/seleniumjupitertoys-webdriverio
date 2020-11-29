@@ -1,4 +1,4 @@
-export default class ContactData {
+export default interface ContactData {
     forename: string;
     email: string;
     message: string;
