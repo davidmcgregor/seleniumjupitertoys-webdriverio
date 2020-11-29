@@ -300,6 +300,7 @@ exports.config = {
             let name = `ERROR-${test.title}-${Date.now()}`;
             browser.saveScreenshot(`./${resultsFolder}/${name}.png`);
         }
+        browser.deleteAllCookies();
     },
 
 
