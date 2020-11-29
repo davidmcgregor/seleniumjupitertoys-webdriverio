@@ -1,6 +1,10 @@
+if(process.env.SELENIUM_URL == undefined) console.log('SELENIUM_URL environment variable is mandatory');
+if(process.env.SELENIUM_WAIT == undefined) console.log('SELENIUM_WAIT environment variable is mandatory');
+if(process.env.SELENIUM_BROWSER == undefined) console.log('SELENIUM_BROWSER environment variable is mandatory');
+
 const resultsFolder = 'tests_output';
 const SELENIUM_URL = process.env.SELENIUM_URL;
-const SELENIUM_BROWSER = process.env.SELENIUM_BROWSER.toLowerCase();
+const SELENIUM_BROWSER = process.env.SELENIUM_BROWSER;
 const SELENIUM_WAIT = Number(process.env.SELENIUM_WAIT) * 1000;
 const SELENIUM_GRID_URL = process.env.SELENIUM_GRID_URL;
 const WDIO_DEBUG = process.env.WDIO_DEBUG==='true';
@@ -39,7 +43,7 @@ availableCapabilities = [
 if (SELENIUM_BROWSER === 'all' || SELENIUM_BROWSER === '*') {
     caps = availableCapabilities
 } else {
-    caps = [availableCapabilities.find(c => c.browserName === SELENIUM_BROWSER)]
+    caps = [availableCapabilities.find(c => c.browserName === SELENIUM_BROWSER.toLowerCase())]
 }
 
 exports.config = {
