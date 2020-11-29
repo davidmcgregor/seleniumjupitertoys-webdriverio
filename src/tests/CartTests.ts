@@ -1,9 +1,5 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import {suite, test} from '@testdeck/mocha';
 import {CartPage, HomePage, ShopPage} from '../model/pages';
-import {Product} from '../model/components';
 import {open} from '../model/pages';
 import 'chai/register-should';
 
@@ -11,29 +7,23 @@ import 'chai/register-should';
 export class CartTests {
     @test
     'validate price in cart page'(): void {
-        const product: Product = open(HomePage)
-            .clickShopMenu()
-            .getProduct(p => p.getTitle() === 'Fluffy Bunny').clickBuyButton();
-        const price: number = product.getPrice();
-        const title: string = product.getTitle();
-        const cartPage: CartPage = open(ShopPage).clickCartMenu();
+        const shopPage: ShopPage = open(HomePage).clickShopMenu();
+        const price: number = shopPage
+            .getProduct(p => p.getTitle() === 'Fluffy Bunny')
+            .clickBuyButton()
+            .getPrice();
 
-        cartPage.getPrice(title).should.equal(price);
+        shopPage.clickCartMenu().getPrice('Fluffy Bunny').should.equal(price);
     }
 
     @test
     'validate cart calculations'(): void {
         const shopPage: ShopPage = open(HomePage).clickShopMenu();
-
-        let product: Product = shopPage.getProduct(p => p.getTitle() === 'Fluffy Bunny').clickBuyButton().clickBuyButton();
-        const bunnyTitle: string = product.getTitle();
-
-        product = shopPage.getProduct(p => p.getTitle() === 'Stuffed Frog').clickBuyButton().clickBuyButton();
-        const frogTitle: string = product.getTitle();
-
+        shopPage.getProduct(p => p.getTitle() === 'Fluffy Bunny').clickBuyButton().clickBuyButton();
+        shopPage.getProduct(p => p.getTitle() === 'Stuffed Frog').clickBuyButton().clickBuyButton();
         const cartPage: CartPage = shopPage.clickCartMenu();
 
-        (cartPage.getPrice(bunnyTitle) * cartPage.getQuantity(bunnyTitle)).should.equal(cartPage.getSubtotal(bunnyTitle));
-        (cartPage.getSubtotal(bunnyTitle) + cartPage.getSubtotal(frogTitle)).should.equal(cartPage.getTotal());
+        (cartPage.getPrice('Fluffy Bunny') * cartPage.getQuantity('Fluffy Bunny')).should.equal(cartPage.getSubtotal('Fluffy Bunny'));
+        (cartPage.getSubtotal('Fluffy Bunny') + cartPage.getSubtotal('Stuffed Frog')).should.equal(cartPage.getTotal());
     }
 }
