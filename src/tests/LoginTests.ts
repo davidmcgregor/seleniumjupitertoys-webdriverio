@@ -17,10 +17,7 @@ export class LoginTests {
     @test
     'validate successful logout'(): void {
         open(HomePage).clickLoginMenu()
-            .setUsername('juan')
-            .setPassword('letmein')
-            .clickAgreeCheckBox()
-            .clickLoginButton()
+            .login('juan','letmein')
             .clickLogoutMenu()
             .clickLogoutButton()
             .getUser().should.equal('');

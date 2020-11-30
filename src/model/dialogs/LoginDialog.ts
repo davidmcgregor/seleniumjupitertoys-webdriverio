@@ -29,4 +29,11 @@ export default class LoginDialog<T extends BasePage> {
         this.rootElement.$('#loginUserName').setValue(username);
         return this;
     }
+
+    public login(username: string, password: string): T {
+        return this.setUsername(username)
+            .setPassword(password)
+            .clickAgreeCheckBox()
+            .clickLoginButton();
+    }
 }
