@@ -17,14 +17,14 @@ export default abstract class BasePage {
         return new CartPage();
     }
 
-    public clickLoginMenu(): LoginDialog {
+    public clickLoginMenu(): LoginDialog<this> {
         $('#nav-login a').click();
-        return new LoginDialog($('.popup'));
+        return new LoginDialog($('.popup'), this);
     }
 
-    public clickLogoutMenu(): LogoutDialog {
+    public clickLogoutMenu(): LogoutDialog<this> {
         $('#nav-logout a').click();
-        return new LogoutDialog($('.popup'));
+        return new LogoutDialog($('.popup'), this);
     }
 
     public getCartCount(): number {

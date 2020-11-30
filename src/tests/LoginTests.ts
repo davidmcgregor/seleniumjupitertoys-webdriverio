@@ -6,22 +6,23 @@ import 'chai/register-should';
 export class LoginTests {
     @test
     'validate successful login'(): void {
-        const homePage: HomePage = open(HomePage);
-        homePage.clickLoginMenu().setUsername('juan')
+        open(HomePage).clickLoginMenu()
+            .setUsername('juan')
             .setPassword('letmein')
             .clickAgreeCheckBox()
-            .clickLoginButton();
-        homePage.getUser().should.equal('juan');
+            .clickLoginButton()
+            .getUser().should.equal('juan');
     }
 
     @test
     'validate successful logout'(): void {
-        const homePage: HomePage = open(HomePage);
-        homePage.clickLoginMenu().setUsername('juan')
+        open(HomePage).clickLoginMenu()
+            .setUsername('juan')
             .setPassword('letmein')
             .clickAgreeCheckBox()
-            .clickLoginButton();
-        homePage.clickLogoutMenu().clickLogoutButton();
-        homePage.getUser().should.equal('');
+            .clickLoginButton()
+            .clickLogoutMenu()
+            .clickLogoutButton()
+            .getUser().should.equal('');
     }
 }
