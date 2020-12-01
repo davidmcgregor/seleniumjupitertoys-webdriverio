@@ -1,5 +1,5 @@
 import {Element} from '@wdio/sync';
-import { LoginData } from '../data';
+import {LoginData} from '../data';
 import BasePage from '../pages/BasePage';
 
 export default class LoginDialog<T extends BasePage> {
