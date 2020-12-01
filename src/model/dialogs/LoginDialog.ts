@@ -1,4 +1,5 @@
 import {Element} from '@wdio/sync';
+import { LoginData } from '../data';
 import BasePage from '../pages/BasePage';
 
 export default class LoginDialog<T extends BasePage> {
@@ -30,9 +31,9 @@ export default class LoginDialog<T extends BasePage> {
         return this;
     }
 
-    public login(username: string, password: string): T {
-        return this.setUsername(username)
-            .setPassword(password)
+    public login(loginData: LoginData): T {
+        return this.setUsername(loginData.username)
+            .setPassword(loginData.password)
             .clickAgreeCheckBox()
             .clickLoginButton();
     }

@@ -52,9 +52,7 @@ new ContactDataProvider('contact_data.json').getData().forEach(contactData => {
         'validate successful submission data driven'(contactData: ContactData): void {
             const contactPage: ContactPage = open(HomePage)
                 .clickContactMenu()
-                .setForename(contactData.forename)
-                .setEmail(contactData.email)
-                .setMessage(contactData.message)
+                .setContactData(contactData)
                 .clickSubmitButton();
         
             expect(contactPage.getSuccessMessage()).to.equal(`Thanks ${contactData.forename}, we appreciate your feedback.`);

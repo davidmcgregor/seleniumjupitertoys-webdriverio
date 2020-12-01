@@ -1,23 +1,25 @@
-import {suite, test} from '@testdeck/mocha';
+import {params, suite, test} from '@testdeck/mocha';
 import {HomePage, open} from '../model/pages';
 import 'chai/register-should';
+import { LoginData } from 'src/model/data';
 
 @suite
 export class LoginTests {
-    @test
-    'validate successful login'(): void {
+    @params({username:"someone", password:"letmein"})
+    @params.naming((loginData: LoginData) => `validate successful login for ${loginData.username}`)
+    'validate successful login'(loginData: LoginData): void {
         open(HomePage).clickLoginMenu()
-            .setUsername('juan')
-            .setPassword('letmein')
-            .clickAgreeCheckBox()
-            .clickLoginButton()
-            .getUser().should.equal('juan');
+            .login(loginData)
+            .getUser().should.equal(loginData.username);
     }
 
     @test
     'validate successful logout'(): void {
         open(HomePage).clickLoginMenu()
-            .login('juan','letmein')
+            .setUsername('someone')
+            .setPassword('letmein')
+            .clickAgreeCheckBox()
+            .clickLoginButton()
             .clickLogoutMenu()
             .clickLogoutButton()
             .getUser().should.equal('');

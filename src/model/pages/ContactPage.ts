@@ -1,4 +1,5 @@
 import {ElementArray, Element} from '@wdio/sync';
+import { ContactData } from '../data';
 import BasePage from './BasePage';
 
 export default class ContactPage extends BasePage {
@@ -20,6 +21,25 @@ export default class ContactPage extends BasePage {
 
     public setForename(forename: string): ContactPage {
         $('#forename').setValue(forename);
+        return this;
+    }
+
+    public setLastname(lastname: string): ContactPage {
+        $('#lastname').setValue(lastname);
+        return this;
+    }
+
+    public setTelephone(telephone: string): ContactPage {
+        $('#telephone').setValue(telephone);
+        return this;
+    }
+
+    public setContactData(contactData: ContactData): ContactPage {
+        if (contactData.forename !== undefined) this.setForename(contactData.forename);
+        if (contactData.lastname !== undefined) this.setLastname(contactData.lastname);
+        if (contactData.email !== undefined) this.setEmail(contactData.email);
+        if (contactData.telephone !== undefined) this.setTelephone(contactData.telephone);
+        if (contactData.message !== undefined) this.setMessage(contactData.message);
         return this;
     }
 
