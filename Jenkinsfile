@@ -16,13 +16,13 @@ node {
 	try {
 		testImage.inside('--network=ci_planittesting') {
             stage('Prepare') {
-                sh "npm i"
-                sh "npm run clean"
+                sh "yarn install"
+                sh "yarn clean"
             }
 			stage ('Run tests') {
 				withEnv(["SELENIUM_HEADLESS=${params.SELENIUM_HEADLESS}", "SELENIUM_GRID_URL=${params.SELENIUM_GRID_URL}", "SELENIUM_URL=${params.SELENIUM_URL}", "SELENIUM_BROWSER=${params.SELENIUM_BROWSER}", "SELENIUM_WAIT=${params.SELENIUM_WAIT}"]) {
 					try {
-						sh "npm test"
+						sh "yarn test"
 					} finally {
 						junit 'tests_output/*.xml'
 						if (findFiles(glob: 'tests_output/**/*.png').size()>0) {
