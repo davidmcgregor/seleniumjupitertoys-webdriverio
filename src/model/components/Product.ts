@@ -1,12 +1,6 @@
-import {Element} from '@wdio/sync';
+import BaseComponent from './BaseComponent';
 
-export default class Product {
-    private rootElement: Element;
-
-    constructor(rootElement: Element) {
-        this.rootElement = rootElement;
-    }
-
+export default class Product<T> extends BaseComponent<T> {
     public getTitle(): string {
         return this.rootElement.$('.product-title').getText();
     }
@@ -17,7 +11,7 @@ export default class Product {
             .replace(new RegExp('[^0-9\\.]+'), ''));
     }
 
-    public clickBuyButton(): Product {
+    public clickBuyButton(): Product<T> {
         this.rootElement.$('.btn').click();
         return this;
     }

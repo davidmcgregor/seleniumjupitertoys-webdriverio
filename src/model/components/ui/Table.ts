@@ -1,12 +1,12 @@
 import {Element} from '@wdio/sync';
 
 export default class Table {
-    private rootElement: Element;
+    protected rootElement: Element;
 
     constructor(rootElement: Element) {
         this.rootElement = rootElement;
     }
-
+    
     private getColumnIndex(columnText: string): number {
         const columns: Element[] = this.rootElement.$$('th');
         const columnIndex: number = columns.findIndex(e => e.getText()===columnText);

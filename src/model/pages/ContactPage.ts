@@ -1,12 +1,11 @@
-import {ElementArray, Element} from '@wdio/sync';
+import {ElementArray} from '@wdio/sync';
 import {ContactData} from '../data';
 import BasePage from './BasePage';
 
 export default class ContactPage extends BasePage {
     public getSuccessMessage(): string {
-        const element: Element = $('.alert-success');
-        element.waitForDisplayed();
-        return element.getText();
+        browser.waitUntil(() => $('.alert-success').isDisplayed(), {timeout: 60000});
+        return $('.alert-success').getText();
     }
 
     public setMessage(message: string): ContactPage {

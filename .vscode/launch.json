@@ -24,7 +24,7 @@
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
-                "SELENIUM_WAIT": "3",
+                "SELENIUM_WAIT": "1",
                 "WDIO_DEBUG": "true"
             }
         },
@@ -46,7 +46,7 @@
             "env": {
                 "SELENIUM_BROWSER": "firefox",
                 "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
-                "SELENIUM_WAIT": "3"
+                "SELENIUM_WAIT": "1"
             }
         }
     ]

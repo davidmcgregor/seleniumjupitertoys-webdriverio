@@ -1,5 +1,5 @@
 import {suite, test} from '@testdeck/mocha';
-import {HomePage, ShopPage, open} from '../model/pages';
+import {HomePage, open} from '../model/pages';
 import 'chai/register-should';
 
 @suite
@@ -23,8 +23,11 @@ export class ShopTests {
 
     @test
     'buy product with number of stars'(): void {
-        const shopPage: ShopPage = open(HomePage).clickShopMenu();
-        shopPage.getProduct(p => p.getStars() === 5).clickBuyButton();
-        shopPage.getCartCount().should.equal(1);
+        open(HomePage)
+            .clickShopMenu()
+            .getProduct(p => p.getStars() === 5)
+            .clickBuyButton()
+            .parent
+            .getCartCount().should.equal(1);
     }
 }

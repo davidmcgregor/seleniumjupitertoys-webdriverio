@@ -1,16 +1,8 @@
-import {Element} from '@wdio/sync';
-import {LoginData} from '../data';
-import BasePage from '../pages/BasePage';
+import {LoginData} from '../../data';
+import BasePage from '../../pages/BasePage';
+import BaseComponent from '../BaseComponent';
 
-export default class LoginDialog<T extends BasePage> {
-    private rootElement: Element;
-    private parent: T 
-
-    constructor(rootElement: Element, parent: T) {
-        this.rootElement = rootElement;
-        this.parent = parent;
-    }
-
+export default class LoginDialog<T extends BasePage> extends BaseComponent<T> {
     public clickLoginButton(): T {
         this.rootElement.$('.btn-primary').click();
         return this.parent;
